@@ -1,13 +1,8 @@
-import axios from 'axios';
-import { myConfig } from '../myConfig';
+import host from './index';
 
 import type { FetchAllPocemonsType, PocemonQueryType } from '../types/types';
 
 export const getAllPocemons = async (query?: PocemonQueryType): Promise<FetchAllPocemonsType> => {
-  const host = axios.create({
-    baseURL: myConfig.apiURL,
-  });
-
   if (query) {
     const { data } = await host.get('/', { params: query });
 

@@ -15,7 +15,7 @@ export type SpritesType = {
 export type OnePokemonType = {
   id: number;
   name: string;
-  baseExperience: number;
+  base_experience: number;
   height: number;
   isDefault: boolean;
   order: number;

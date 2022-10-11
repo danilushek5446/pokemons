@@ -13,6 +13,7 @@ export const StyledHeaderContainer = styled.div`
   padding-bottom: 20px;
 
   .logo{
+    cursor: pointer;
     max-width: 80px;
     max-height: 80px;
     width: 100%;

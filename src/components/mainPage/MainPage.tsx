@@ -10,7 +10,7 @@ import { myConfig } from '../../myConfig';
 import type { PocemonQueryType } from '../../types/types';
 
 const MainPage: FC = () => {
-  const pocemons = useAppSelector((state) => state.poceomons);
+  const pocemons = useAppSelector((state) => state.pocemons);
   const [pageNumber, setPageNumber] = useState(1);
 
   const dispatch = useAppDispatch();
@@ -19,28 +19,37 @@ const MainPage: FC = () => {
     return Math.ceil(pocemons.count / +(myConfig.perPage || 20));
   }, [pocemons.count]);
 
+  const offset = useMemo(() => {
+    return 20 * +((pageNumber - 1));
+  }, [pageNumber]);
+
   const onPageChange = (event: React.MouseEvent, page: number) => {
     event.preventDefault();
-    setPageNumber(page);
 
+    setPageNumber(page);
+  };
+
+  useEffect(() => {
     const query: PocemonQueryType = {
-      offset: 20 * +((page - 1) || 0),
+      offset,
       limit: +(myConfig.perPage || 20),
     };
 
     dispatch(getPokemons(query));
-  };
-
-  useEffect(() => {
-    dispatch(getPokemons());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [pageNumber]);
 
   return (
     <StyledMainPageContainer>
       <div className="pocemon-item">
         {pocemons.pocemonArray?.map((item, index) => {
-          return <PocemonCard key={index} name={item.name} url={item.url} />;
+          return (
+            <PocemonCard
+              key={index}
+              name={item.name}
+              url={item.url}
+            />
+          );
         })}
       </div>
       <Pagination

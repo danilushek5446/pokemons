@@ -15,7 +15,7 @@ const Footer: FC = () => {
     window.addEventListener('resize', resize);
 
     return () => window.removeEventListener('resize', resize);
-  });
+  }, []);
 
   return (
     <StyledFooterContainer>
