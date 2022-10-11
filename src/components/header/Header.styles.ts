@@ -5,12 +5,21 @@ export const StyledHeaderContainer = styled.div`
   height: 100%;
   max-width: 1280px;
   width: 100%;
-  background-color: orange;
+  background-color: #FFF933;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 20px;
+  padding-bottom: 20px;
 
   .logo{
     max-width: 80px;
     max-height: 80px;
     width: 100%;
     height: 100%;
+  }
+  
+  span{
+    align-self: center;
   }
 `;
